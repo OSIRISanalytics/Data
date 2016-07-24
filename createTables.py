@@ -1,3 +1,7 @@
+# +++++++++++++++++++
+# Pinnacle
+
+
 import sqlite3
 
 sqlite_file = 'osiris.db' 
@@ -6,7 +10,7 @@ conn = sqlite3.connect(sqlite_file)
 c = conn.cursor()
 
 
-# Creating a new SQLite table with 1 column
+# Creating a new SQLite table
 c.execute('''
 	CREATE TABLE odds_pinnacle
 		(
@@ -23,6 +27,39 @@ c.execute('''
 		market_value numeric,
 		market_odds numeric,
 		market_size numeric
+		)
+	''')
+
+conn.commit()
+conn.close()
+
+
+# +++++++++++++++++++
+# Betfair
+
+
+import sqlite3
+
+sqlite_file = 'osiris.db' 
+
+conn = sqlite3.connect(sqlite_file)
+c = conn.cursor()
+
+
+# Creating a new SQLite table
+c.execute('''
+	CREATE TABLE odds_betfair
+		(
+		log_time datetime,
+		market_start_time datetime,
+		market_id float(6),
+		market_name varchar(15),
+		runner_name varchar(30),
+		price_selection_id integer,
+		available_to_back_price float(6),
+		available_to_back_market float(10),
+		available_to_lay_price float(6),
+		available_to_lay_market float(10)
 		)
 	''')
 
